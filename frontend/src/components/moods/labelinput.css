@@ -1,0 +1,22 @@
+/* Add this CSS to your stylesheet or component-specific CSS file */
+.label-input-container {
+  display: flex;
+  align-items: center; /* Vertically center items */
+  margin-bottom: 10px; /* Add spacing between each label-input pair */
+  /* You can add more styling as needed */
+}
+
+.label-input-container label {
+  width: 100px; /* Adjust the width as needed to control label column width */
+  margin-right: 10px; /* Add spacing between label and input */
+  font-weight: bold;
+}
+
+.label-input-container input,
+.label-input-container textarea {
+  flex: 1; /* Allow input to expand and take remaining space */
+  padding: 8px;
+  border: 1px solid var(--color-primary);
+  border-radius: 5px;
+  /* You can add more styling as needed */
+}

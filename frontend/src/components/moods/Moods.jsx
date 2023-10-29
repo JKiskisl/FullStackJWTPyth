@@ -136,13 +136,12 @@ const Moods = () => {
       const accessToken = await getTokenFromLocalStorage();
       const response = await deleteMoods(accessToken, moodId);
 
-      if (response.error === null) {
-        // Update the state to remove the deleted mood
-        setMoods((prevMoods) => prevMoods.filter((mood) => mood.id !== moodId));
-        setErrorMessage("");
-      } else {
-        setErrorMessage(response.error);
-      }
+      const newMoods = moods.filter((mood) => mood.id !== moodId);
+
+      setMoods(newMoods);
+      setErrorMessage("");
+
+      setErrorMessage(response.error);
     } catch (error) {
       setErrorMessage(JSON.stringify(error.message, null, 2));
     }
@@ -228,7 +227,7 @@ const Moods = () => {
     <div className="moods">
       <h2>Moods</h2>
       <button className="add-mood-button" onClick={() => showPopUpClear()}>
-        Add Mood
+        Add Moods
       </button>
       {showForm && (
         <MoodForm

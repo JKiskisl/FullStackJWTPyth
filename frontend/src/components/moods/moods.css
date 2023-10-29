@@ -219,3 +219,53 @@ h2 {
 .delete-button:hover {
   background-color: #c82333;
 }
+
+/* Update your existing CSS or add these styles to your stylesheet */
+
+/* Style for smaller labels */
+.mood-form label {
+  font-size: 0.8rem; /* Adjust the font size as needed */
+  color: var(--color-white); /* Adjust the color as needed */
+  margin-bottom: 5px;
+  text-transform: lowercase; /* Convert labels to uppercase text */
+  letter-spacing: 1px; /* Add letter spacing for clarity */
+}
+
+/* Style for form fields */
+.mood-form input,
+.mood-form textarea {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid var(--color-primary);
+  border-radius: 5px;
+}
+
+/* Style for buttons */
+.mood-form button {
+  padding: 8px 12px;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Style for date input, number input, and select */
+.mood-form input[type="date"],
+.mood-form input[type="number"],
+.mood-form select,
+.mood-form textarea {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid var(--color-primary);
+  border-radius: 5px;
+}
+
+/* Ensure the form fits within the screen */
+.mood-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%; /* Set max width to 100% for full-screen fit */
+  margin-bottom: 20px;
+}

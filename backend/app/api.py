@@ -10,7 +10,8 @@ from passlib.context import CryptContext
 from app.auth.auth_handler import decodeJWT, refreshJWT, expireJWT
 import jwt
 from fastapi.middleware.cors import CORSMiddleware
-
+from pymongo.collection import ReturnDocument
+from pymongo.errors import DuplicateKeyError 
 from fastapi.responses import JSONResponse
 from app.custom_json_encoder import CustomJSONEncoder
 import json
@@ -20,8 +21,12 @@ client = MongoClient("mongodb://localhost:27017/")
 db = client["mydatabase"]
 users_collection = db["users"]
 posts_collection = db["posts"]
+counters_collection = db["counters"]
+
 
 users_collection.create_index("email", unique=True)
+
+
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -119,13 +124,30 @@ async def get_single_post(id: int, email: str = Depends(get_current_email)) -> d
             
 @app.post("/posts", dependencies=[Depends(JWTBearer())], tags=["posts"])
 async def add_post(post: PostSchema, email=Depends(get_current_user)) -> dict:
-    post_data = post.dict()
-    post_data["email"] = email
-    post_data["id"] = posts_collection.count_documents({}) + 1
-    posts_collection.insert_one(post_data)
-    return {
-        "data": "post added."
-    }
+    try:
+        # Try to insert a new document with the given "_id" (post_id)
+        counter = counters_collection.find_one_and_update(
+            {"_id": "post_id"},
+            {"$inc": {"sequence_value": 1}},
+            upsert=True,
+            return_document=ReturnDocument.AFTER
+        )
+        
+        post_data = post.dict()
+        post_data["email"] = email
+        post_data["id"] = counter["sequence_value"]
+        
+        # Insert the post with the new unique ID
+        posts_collection.insert_one(post_data)
+        
+        return {
+            "data": "post added."
+        }
+    except DuplicateKeyError as e:
+        # Handle the case where a document with the same "_id" already exists
+        return {
+            "error": "A document with the same '_id' already exists."
+        }
     
     
 @app.post("/user/signup", tags=["user"])
@@ -178,7 +200,7 @@ async def update_post(id: int, post: UpdatePostSchema, email: str = Depends(get_
     
     return JSONResponse(content={"data": json.loads(serialized_post)})
     
-    
+
 @app.post("/user/logout", tags=["user"])
 async def user_logout(token: str = Depends(JWTBearer())) -> dict:
     try:
