@@ -1,0 +1,148 @@
+.custom-mood-table {
+  background-color: #181a1b !important;
+  color: #fff !important;
+}
+
+.custom-mood-table th {
+  background-color: #181a1b !important;
+  color: #fff !important;
+}
+
+.custom-mood-table th,
+.custom-mood-table td {
+  border: 1px solid #ff6a11 !important;
+  color: #fff !important;
+}
+
+.custom-mood-table tbody {
+  color: #fff !important;
+}
+
+.custom-mood-table .MuiInputBase-input {
+  color: #fff !important;
+}
+
+.custom-mood-table .MuiPaper-root {
+  background-color: #181a1b !important;
+}
+
+.custom-mood-table .MuiTablePagination-actions button,
+.custom-mood-table .MuiTablePagination-displayedRows,
+.custom-mood-table .MuiTablePagination-select,
+.custom-mood-table .MuiTablePagination-caption,
+.custom-mood-table .MuiTablePagination-input,
+.custom-mood-table .MuiTypography-root.MuiTablePagination-caption {
+  color: #fff !important;
+}
+
+.custom-mood-table .MuiTablePagination-root {
+  background-color: #181a1b !important;
+}
+
+.custom-mood-table th.MuiTableSortLabel-root,
+.custom-mood-table th.MuiTableSortLabel-root:hover,
+.custom-mood-table th.MuiTableSortLabel-root.MuiTableSortLabel-active,
+.custom-mood-table
+  th.MuiTableSortLabel-root.MuiTableSortLabel-active.MuiTableSortLabel-root.MuiTableSortLabel-descending,
+.custom-mood-table
+  th.MuiTableSortLabel-root.MuiTableSortLabel-active.MuiTableSortLabel-root.MuiTableSortLabel-ascending {
+  color: #fff !important;
+}
+
+.custom-mood-table .MuiTableSortLabel-root,
+.custom-mood-table .MuiTableSortLabel-root:hover,
+.custom-mood-table .MuiTableSortLabel-root.MuiTableSortLabel-active,
+.custom-mood-table
+  .MuiTableSortLabel-root.MuiTableSortLabel-active.MuiTableSortLabel-root.MuiTableSortLabel-descending,
+.custom-mood-table
+  .MuiTableSortLabel-root.MuiTableSortLabel-active.MuiTableSortLabel-root.MuiTableSortLabel-ascending {
+  color: #fff !important;
+}
+
+.custom-mood-table .MuiToolbar-root .MuiIconButton-root,
+.custom-mood-table .MuiToolbar-root .MuiIconButton-root svg {
+  color: #fff !important;
+}
+.custom-mood-table .MuiToolbar-root .tss-1h5wt30-MUIDataTableSearch-searchIcon {
+  color: #fff !important;
+}
+
+.custom-mood-table
+  .MuiTableSortLabel-root.Mui-active
+  .tss-1h9t3sl-MUIDataTableHeadCell-data {
+  color: #fff !important;
+}
+.tss-hwdp7s-MUIDataTable-liveAnnounce {
+  color: #fff !important;
+}
+
+.custom-mood-table th[data-colindex="0"] .tss-1akey0g-MUIDataTableHeadCell-data,
+.custom-mood-table th[data-colindex="1"] .tss-1akey0g-MUIDataTableHeadCell-data,
+.custom-mood-table th[data-colindex="2"] .tss-1akey0g-MUIDataTableHeadCell-data,
+.custom-mood-table th[data-colindex="3"] .tss-1akey0g-MUIDataTableHeadCell-data,
+.custom-mood-table th[data-colindex="4"] .tss-1akey0g-MUIDataTableHeadCell-data,
+.custom-mood-table
+  th[data-colindex="5"]
+  .tss-1akey0g-MUIDataTableHeadCell-data {
+  color: #fff !important;
+}
+
+.custom-mood-table
+  th[data-colindex="0"]
+  .MuiTableSortLabel-root.Mui-active
+  .tss-1akey0g-MUIDataTableHeadCell-data,
+.custom-mood-table
+  th[data-colindex="1"]
+  .MuiTableSortLabel-root.Mui-active
+  .tss-1akey0g-MUIDataTableHeadCell-data,
+.custom-mood-table
+  th[data-colindex="2"]
+  .MuiTableSortLabel-root.Mui-active
+  .tss-1akey0g-MUIDataTableHeadCell-data,
+.custom-mood-table
+  th[data-colindex="3"]
+  .MuiTableSortLabel-root.Mui-active
+  .tss-1akey0g-MUIDataTableHeadCell-data,
+.custom-mood-table
+  th[data-colindex="4"]
+  .MuiTableSortLabel-root.Mui-active
+  .tss-1akey0g-MUIDataTableHeadCell-data,
+.custom-mood-table
+  th[data-colindex="5"]
+  .MuiTableSortLabel-root.Mui-active
+  .tss-1akey0g-MUIDataTableHeadCell-data {
+  color: #fff !important;
+}
+
+.custom-mood-table th[data-colindex="0"] .MuiTableSortLabel-iconDirectionAsc,
+.custom-mood-table th[data-colindex="1"] .MuiTableSortLabel-iconDirectionAsc,
+.custom-mood-table th[data-colindex="2"] .MuiTableSortLabel-iconDirectionAsc,
+.custom-mood-table th[data-colindex="3"] .MuiTableSortLabel-iconDirectionAsc,
+.custom-mood-table th[data-colindex="4"] .MuiTableSortLabel-iconDirectionAsc,
+.custom-mood-table th[data-colindex="5"] .MuiTableSortLabel-iconDirectionAsc {
+  fill: #fff !important;
+}
+
+.custom-mood-table th[data-colindex="0"] .MuiTableSortLabel-iconDirectionDesc,
+.custom-mood-table th[data-colindex="1"] .MuiTableSortLabel-iconDirectionDesc,
+.custom-mood-table th[data-colindex="2"] .MuiTableSortLabel-iconDirectionDesc,
+.custom-mood-table th[data-colindex="3"] .MuiTableSortLabel-iconDirectionDesc,
+.custom-mood-table th[data-colindex="4"] .MuiTableSortLabel-iconDirectionDesc,
+.custom-mood-table th[data-colindex="5"] .MuiTableSortLabel-iconDirectionDesc {
+  fill: #fff !important;
+}
+
+p.MuiTablePagination-selectLabel.css-pdct74-MuiTablePagination-selectLabel {
+  color: #fff !important;
+}
+.MuiSvgIcon-root.MuiSelect-icon {
+  fill: #fff !important;
+}
+
+.css-11mde6h-MuiPaper-root {
+  box-shadow: none !important;
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation4.tss-11quiee-MUIDataTable-paper.tss-1x5mjc5-MUIDataTable-root.custom-mood-table.css-11mde6h-MuiPaper-root {
+  width: 100% !important;
+}

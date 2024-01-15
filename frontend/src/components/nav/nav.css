@@ -36,12 +36,11 @@ ul.ul-right {
   list-style: none;
   margin: 0;
   padding: 0;
-  /* Adjusted this to push the buttons to the right */
   margin-left: auto;
 }
 
 ul.ul-right li {
-  margin: 0 10px; /* Adjusted this to a smaller value */
+  margin: 0 10px;
 }
 
 .active a {

@@ -119,7 +119,7 @@ img {
 .app-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensures the container takes at least the full viewport height */
+  min-height: 100vh;
 }
 
 /* media queries */

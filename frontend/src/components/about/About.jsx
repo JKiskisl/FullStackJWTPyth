@@ -1,9 +1,6 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
-
 import "./about.css";
 import US from "../../assets/360mind logo.png";
-
 import { BiAward } from "react-icons/bi";
 import { FaUsers } from "react-icons/fa";
 
@@ -36,24 +33,28 @@ const About = () => {
           </div>
 
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat
-            omnis incidunt molestiae corrupti tempore a enim odit! Quasi dolorum
-            nobis repudiandae enim expedita, fugiat blanditiis magnam placeat
-            dicta corrupti facere? Lorem ipsum, dolor sit amet consectetur
-            adipisicing elit. Quas ut odit praesentium cum dolor libero sed,
-            quaerat error voluptatum atque aliquam architecto iste. Incidunt,
-            numquam minus. Pariatur possimus corrupti a. Lorem, ipsum dolor sit
-            amet consectetur adipisicing elit. Quasi dolor nam necessitatibus,
-            sunt magnam exercitationem ea sint, voluptas atque laborum natus,
-            amet quod quae ipsa tempore. Praesentium eius mollitia amet?Lorem
-            ipsum dolor sit amet consectetur adipisicing elit. Tempora illum
-            mollitia perspiciatis, consequuntur veniam maiores nulla sed eaque
-            laudantium commodi veritatis beatae tenetur, tempore deserunt
-            adipisci laboriosam quos, nam officia!Lorem Lorem ipsum dolor sit
-            amet consectetur adipisicing elit. Consequuntur doloribus
-            temporibus, corporis cumque atque in quam hic ad eos suscipit
-            molestias quae velit tempora, voluptatem reprehenderit possimus
-            similique nulla odit?
+            360 Mind is a cutting-edge company at the forefront of the digital
+            mental health industry, specializing in the development of
+            innovative products and solutions. With a primary focus on enhancing
+            mental well-being, 360 Mind has positioned itself as a key player in
+            the digital products landscape. Through a thoughtful combination of
+            advanced technology and a deep understanding of mental health, the
+            company is dedicated to providing impactful solutions that cater to
+            the unique needs of individuals in the United States and the
+            European Union.
+          </p>
+          <p>
+            As a trailblazer in the realm of mental health-related digital
+            products, 360 Mind is committed to creating tools that empower users
+            to take charge of their mental wellness journey. From personalized
+            mindfulness applications to interactive therapy platforms, the
+            company leverages state-of-the-art technologies to deliver
+            comprehensive and user-friendly solutions. 360 Mind's
+            customer-centric approach is reflected in its commitment to serving
+            a diverse clientele across the United States and the European Union.
+            By aligning its products with the cultural nuances and mental health
+            landscapes of these regions, the company ensures that its offerings
+            resonate with users and address their specific challenges.
           </p>
 
           <a href="#contact" className="btn btn-primary">

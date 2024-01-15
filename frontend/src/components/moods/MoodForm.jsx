@@ -1,4 +1,3 @@
-// MoodForm.jsx
 import React from "react";
 import DatePicker from "react-datepicker";
 import "./datepickers.css";
@@ -191,7 +190,7 @@ const MoodForm = ({
             ></textarea>
           </div>
           <div className="label-input-container">
-            <label htmlFor="Anxious">Thins that made me anxious today</label>
+            <label htmlFor="Anxious">Things that made me anxious today</label>
             <textarea
               name="Anxious"
               placeholder="Things that made me anxious today"
@@ -218,6 +217,16 @@ const MoodForm = ({
               }
             ></textarea>
           </div>
+          {editMood && (
+            <div className="label-input-container">
+              <label htmlFor="AITips">AI generated tips</label>
+              <textarea
+                name="AITips"
+                value={editFormValue.AITips || ""}
+                readOnly
+              ></textarea>
+            </div>
+          )}
           <div className="popup-buttons">
             <button type="submit">{editMood ? "Update" : "Add mood"}</button>
             {editMood && (

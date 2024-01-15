@@ -37,6 +37,7 @@ export const getMoods = async (accessToken) => {
     Snacks: mood.Snacks,
     Anxious: mood.Anxious,
     Sad: mood.Sad,
+    AITips: mood.AITips,
   }));
 
   return {
@@ -179,7 +180,6 @@ export const updateMood = async (accessToken, moodId, mood) => {
 };
 
 //getMoodByID
-//NOT TESTED
 
 export const getMoodByID = async (accessToken, moodId) => {
   const config = {
@@ -210,4 +210,24 @@ export const getMoodByID = async (accessToken, moodId) => {
   };
 };
 
-//NOT TESTED!
+export const analyzeMoodDiary = async (accessToken, moodId) => {
+  const config = {
+    url: `${apiServerUrl}/analyze-mood/${moodId}`,
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  };
+
+  const { data, error } = await callExternalApi({ config });
+
+  if (error) {
+    return { data: null, error };
+  }
+
+  return {
+    data: data.response,
+    error: null,
+  };
+};

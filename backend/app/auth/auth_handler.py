@@ -1,10 +1,7 @@
-
 import time
 from typing import Dict
-
 import jwt
 from decouple import config
-
 
 JWT_SECRET = config("secret")
 JWT_ALGORITHM = config("algorithm")
@@ -18,12 +15,11 @@ def token_response(token: str):
 def signJWT(user_id: str) -> Dict[str, str]:
     payload = {
         "user_id": user_id,
-        "expires": time.time() + 1000
+        "expires": time.time() + 2000
     }
     token = jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
 
     return token_response(token)
-
 
 def refreshJWT(token: str) -> Dict[str, str]:
     decoded_token = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
@@ -52,7 +48,6 @@ def decodeJWT(token: str) -> dict:
         print("unexpected error during token decoding:", e)
         return None    
     
-
 def expireJWT(token: str) -> Dict[str, str]:
     try:
         decoded_token = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])

@@ -1,5 +1,3 @@
-# custom_json_encoder.py
-
 import json
 from bson import ObjectId
 

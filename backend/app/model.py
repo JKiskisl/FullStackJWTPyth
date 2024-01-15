@@ -1,6 +1,4 @@
-
 from pydantic import BaseModel, Field, EmailStr
-
 
 class PostSchema(BaseModel):
     id: int = Field(default=None)
@@ -17,6 +15,7 @@ class PostSchema(BaseModel):
     Snacks: str = Field(...)
     Anxious: str = Field(...)
     Sad: str = Field(...)
+    AITips: str = None
     email: str = None
 
     class Config:
@@ -35,8 +34,11 @@ class PostSchema(BaseModel):
                 "Snacks": "Fruit",
                 "Anxious": "Managed stress through deep breathing",
                 "Sad": "Something reminded me of my ex",
+                "AITips":"Ai tips content",
             }
         }
+
+
 class UserSchema(BaseModel):
     fullname: str = Field(...)
     email: EmailStr = Field(...)

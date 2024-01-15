@@ -14,10 +14,11 @@ const Product = () => {
           you improve it
         </h2>
         <p className="product-description">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci nam
-          voluptatum cupiditate, suscipit numquam in eum veniam distinctio,
-          dolorem porro ipsa at odit quod modi. Pariatur esse repellat
-          consectetur aut.
+          Elevate your mental well-being with 360 Mind's innovative digital
+          products, placing a special focus on our standout feature - the Mood
+          Diary. Our commitment is to provide you with tools that go beyond
+          conventional solutions. The Mood Diary is your personal space for
+          self-reflection and emotional well-being.
         </p>
       </div>
       <div className="product-image">

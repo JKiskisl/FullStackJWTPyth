@@ -1,29 +1,78 @@
 import React, { useState, useEffect } from "react";
-
 import "./datepickers.css";
 import MoodForm from "./MoodForm";
 import MoodTable from "./MoodTable";
-
 import "./moods.css";
 import {
   addMood,
+  analyzeMoodDiary,
   deleteMoods,
   getMoods,
   updateMood,
 } from "../../services/moods.service";
 import { getTokenFromLocalStorage } from "../../services/auth.service";
+import { Snackbar, CircularProgress, Modal, Fade } from "@mui/material";
+import MuiAlert from "@mui/material/Alert";
 
 const Moods = () => {
   const [moods, setMoods] = useState([]);
+  // eslint-disable-next-line
   const [errorMessage, setErrorMessage] = useState(null);
   const [newMoodAdded, setNewMoodAdded] = useState(false);
+  // eslint-disable-next-line
   const [newMood, setNewMood] = useState(null);
-
   const [selectedDate, setSelectedDate] = useState(null);
   const [showForm, setShowForm] = useState(false);
-
   const [editMood, setEditMood] = useState(null);
   const [editFormValue, setEditFormValue] = useState({});
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarSeverity, setSnackbarSeverity] = useState("success");
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [aiTips, setAiTips] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setSnackbarOpen(false);
+  };
+
+  const handleAnalyzeMoodDiary = async (moodId) => {
+    try {
+      setIsLoading(true);
+      const accessToken = await getTokenFromLocalStorage();
+      const moodToAnalyze = moods.find((mood) => mood.id === moodId);
+
+      if (!moodToAnalyze) {
+        console.error("Mood not found for analysis");
+        return;
+      }
+
+      const response = await analyzeMoodDiary(accessToken, moodId);
+
+      if (response.error) {
+        console.error("Error during mood analysis:", response.error);
+      } else {
+        setSnackbarSeverity("success");
+        setSnackbarMessage(`Mood analysis completed!`);
+        if (response.data !== undefined) {
+          setEditFormValue((prevFormValue) => ({
+            ...prevFormValue,
+            AITips: response.data,
+          }));
+          setAiTips(response.data);
+        } else {
+          console.error("Unexpected response format:", response);
+        }
+        setSnackbarOpen(true);
+      }
+    } catch (error) {
+      console.error("Unexpected error occurred during mood analysis:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleEditMood = (mood) => {
     setEditMood(mood);
@@ -41,6 +90,7 @@ const Moods = () => {
       Snacks: mood.Snacks,
       Anxious: mood.Anxious,
       Sad: mood.Sad,
+      AITips: mood.AITips,
     });
     setSelectedDate(new Date(mood.date));
     setShowForm(true);
@@ -63,6 +113,7 @@ const Moods = () => {
       Snacks: editFormValue.Snacks,
       Anxious: editFormValue.Anxious,
       Sad: editFormValue.Sad,
+      AITips: editFormValue.AITips,
     };
 
     try {
@@ -87,8 +138,15 @@ const Moods = () => {
         setEditFormValue({});
         setErrorMessage("");
         setShowForm(false);
+
+        setSnackbarSeverity("success");
+        setSnackbarMessage(`Mood updated successfully`);
+        setSnackbarOpen(true);
       } else {
         setErrorMessage(response.error);
+        setSnackbarSeverity("error");
+        setSnackbarMessage(`Mood didn't update!`);
+        setSnackbarOpen(true);
       }
     } catch (error) {
       setErrorMessage(JSON.stringify(error.message, null, 2));
@@ -129,7 +187,7 @@ const Moods = () => {
     return () => {
       isMounted = false;
     };
-  }, [newMoodAdded]);
+  }, [newMoodAdded, aiTips]);
 
   const handleDeleteMood = async (moodId) => {
     try {
@@ -140,15 +198,21 @@ const Moods = () => {
 
       setMoods(newMoods);
       setErrorMessage("");
-
       setErrorMessage(response.error);
+
+      setSnackbarSeverity("success");
+      setSnackbarMessage(`Mood deleted successfully`);
+      setSnackbarOpen(true);
     } catch (error) {
+      setSnackbarSeverity("error");
+      setSnackbarMessage(`Mood error while deleting!`);
+      setSnackbarOpen(true);
       setErrorMessage(JSON.stringify(error.message, null, 2));
     }
   };
 
   const handleAddMood = async (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault();
 
     const title = event.target.title.value;
     const content = event.target.content.value;
@@ -184,7 +248,6 @@ const Moods = () => {
       });
 
       if (response.error === null) {
-        // Add the newly added mood to the state
         const newMood = {
           id: response.data.id,
           title: response.data.title,
@@ -206,9 +269,14 @@ const Moods = () => {
         setErrorMessage("");
         setShowForm(false);
         setNewMoodAdded(true);
-        console.log("Deleted Mood Set to True");
-        console.log("popup closed");
+
+        setSnackbarSeverity("success");
+        setSnackbarMessage(`Mood added successfully!`);
+        setSnackbarOpen(true);
       } else {
+        setSnackbarSeverity("error");
+        setSnackbarMessage(`Mood failed to add!`);
+        setSnackbarOpen(true);
         setErrorMessage(response.error);
       }
     } catch (error) {
@@ -248,7 +316,50 @@ const Moods = () => {
         handleEditMood={handleEditMood}
         handleDeleteMood={handleDeleteMood}
         newMood={newMood}
+        analyzeMoodDiary={handleAnalyzeMoodDiary}
       />
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleSnackbarClose}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={handleSnackbarClose}
+          severity={snackbarSeverity}
+        >
+          {snackbarMessage}
+        </MuiAlert>
+      </Snackbar>
+      <Modal open={isLoading} closeAfterTransition>
+        <Fade in={isLoading}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100vh",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "var(--color-bg-variant)",
+                padding: "20px",
+                borderRadius: "10px",
+                color: "var(--color-white)",
+              }}
+            >
+              <CircularProgress style={{ color: "var(--color-primary)" }} />
+              <div style={{ marginTop: "10px" }}>Analyzing Mood...</div>
+            </div>
+          </div>
+        </Fade>
+      </Modal>
     </div>
   );
 };

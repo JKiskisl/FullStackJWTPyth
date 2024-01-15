@@ -58,6 +58,7 @@
 .about__content p {
   margin: 2rem 0 2.6rem;
   color: var(--color-light);
+  text-align: justify;
 }
 
 /* Media queries (medium devices)*/

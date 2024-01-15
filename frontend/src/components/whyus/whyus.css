@@ -12,7 +12,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; /* Added this line */
+  flex-direction: column;
 }
 
 .review-set {
@@ -23,7 +23,7 @@
   gap: 20px;
   width: fit-content;
   margin: 0 auto;
-  margin-bottom: 20px; /* Added this line */
+  margin-bottom: 20px;
 }
 
 .review {

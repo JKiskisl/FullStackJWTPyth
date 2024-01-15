@@ -1,4 +1,3 @@
-// MoodTableRow.jsx
 import React from "react";
 
 const MoodTableRow = ({ mood, handleEditMood, handleDeleteMood }) => {
